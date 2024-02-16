@@ -6,6 +6,17 @@ from events.models import Event, Registration
 from events.serializers import EventSerializer, UserSerializer
 
 
+class IsOwnerOrReadOnly(permissions.BasePermission):
+    """
+    Custom permission to only allow owners of an event to edit it.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.owner == request.user
+
+
 class UserRegister(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
@@ -49,7 +60,7 @@ class EventListView(generics.ListAPIView):
 class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
 
 # POST /api/events/<id>/register/ - Register for an Event
@@ -60,10 +71,6 @@ class RegisterEventView(APIView):
         event_id = kwargs.get('pk')
         event = generics.get_object_or_404(Event, id=event_id)
         user = request.user
-
-        if event.registrations.count() >= event.max_attendees:
-            return Response({'message': 'This event has reached its maximum number of participants.'},
-                            status=status.HTTP_400_BAD_REQUEST)
 
         # Check if the User is already registered
         if Registration.objects.filter(event=event, user=user).exists():
