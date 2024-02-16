@@ -23,3 +23,9 @@ class EventSerializer(serializers.ModelSerializer):
 
     def get_attendees_count(self, obj):
         return obj.registrations.count()
+
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Registration
+        fields = ['id', 'event', 'user', 'registration_date']

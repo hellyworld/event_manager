@@ -50,3 +50,44 @@ class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+# POST /api/events/<id>/register/ - Register for an Event
+class RegisterEventView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        event_id = kwargs.get('pk')
+        event = generics.get_object_or_404(Event, id=event_id)
+        user = request.user
+
+        if event.registrations.count() >= event.max_attendees:
+            return Response({'message': 'This event has reached its maximum number of participants.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the User is already registered
+        if Registration.objects.filter(event=event, user=user).exists():
+            return Response({'message': 'You are already registered for this event.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        # Register the User
+        Registration.objects.create(event=event, user=user)
+        return Response({'message': 'Registration successful.'}, status=status.HTTP_201_CREATED)
+
+
+# POST /api/events/<id>/unregister/ - Unregister for an Event
+class UnregisterEventView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        event_id = kwargs.get('pk')
+        event = generics.get_object_or_404(Event, id=event_id)
+        user = request.user
+
+        # Attempt to unregister the user
+        try:
+            registration = Registration.objects.get(event=event, user=user)
+            registration.delete()
+            return Response({'message': 'Unregistered successfully.'}, status=status.HTTP_202_ACCEPTED)
+        except Registration.DoesNotExist:
+            return Response({'message': 'You are not registered for this event'}, status=status.HTTP_400_BAD_REQUEST)
