@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from events.models import Event, Registration
 from django.contrib.auth.models import User
 
 
@@ -12,3 +13,13 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'owner', 'name', 'description', 'start_date', 'end_date', 'max_attendees']
+        read_only_fields = ['id', 'owner']
+
+    def get_attendees_count(self, obj):
+        return obj.registrations.count()
