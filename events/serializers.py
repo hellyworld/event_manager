@@ -16,10 +16,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
+    attendees_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Event
-        fields = ['id', 'owner', 'name', 'description', 'start_date', 'end_date', 'max_attendees']
-        read_only_fields = ['id', 'owner']
+        fields = ['id', 'owner', 'name', 'description', 'start_date', 'end_date', 'max_attendees', 'attendees_count']
+        read_only_fields = ['id', 'owner', 'attendees_count']
 
     def get_attendees_count(self, obj):
         return obj.registrations.count()

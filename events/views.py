@@ -72,6 +72,10 @@ class RegisterEventView(APIView):
         event = generics.get_object_or_404(Event, id=event_id)
         user = request.user
 
+        if event.registrations.count() >= event.max_attendees:
+            return Response({'message': 'This event has reached its maximum number of participants.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
         # Check if the User is already registered
         if Registration.objects.filter(event=event, user=user).exists():
             return Response({'message': 'You are already registered for this event.'},
