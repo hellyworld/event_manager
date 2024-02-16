@@ -1,0 +1,92 @@
+# User Endpoints
+POST http://localhost:8000/api/users/register/
+Content-Type: application/json
+
+{"username": "adi", "password":  "testpass", "email": "user@example.com"}
+
+###
+
+POST http://localhost:8000/api/users/login/
+Content-Type: application/json
+
+{"username": "geo", "password":  "testpass"}
+
+###
+
+POST http://localhost:8000/api/users/refresh/
+Content-Type: application/json
+
+{"username": "testuser3", "password":  "testpass"}
+
+###
+
+POST http://localhost:8000/api/users/verify/
+Content-Type: application/json
+
+{"username": "testuser3", "password":  "testpass"}
+
+###
+
+# Event Endpoints
+GET http://localhost:8000/api/events/
+Content-Type: application/json
+
+
+###
+# Cretae a new EVENT (POST request)
+POST http://localhost:8000/api/events/create/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ0NTY1LCJpYXQiOjE3MDgwNDA5NjUsImp0aSI6ImUwNjRmOTU3YjNmYzRkYmNiNzcwODNiMzY2OTJhMDQ2IiwidXNlcl9pZCI6NX0.Ag-z-dUpOheOV7A4_QV_I0fS_OlPWt-R4Zgeg4QrNmQ
+
+{
+    "name": "for Denisa",
+    "description": "Morning Sunshine",
+    "start_date": "2024-02-15T20:46:11Z",
+    "end_date": "2024-02-17T20:46:16Z",
+    "max_attendees": 5
+}
+
+###
+
+GET http://localhost:8000/api/events/owned/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ0NTY1LCJpYXQiOjE3MDgwNDA5NjUsImp0aSI6ImUwNjRmOTU3YjNmYzRkYmNiNzcwODNiMzY2OTJhMDQ2IiwidXNlcl9pZCI6NX0.Ag-z-dUpOheOV7A4_QV_I0fS_OlPWt-R4Zgeg4QrNmQ
+
+###
+# Retrieve an Event Details (GET request):
+GET  http://localhost:8000/api/events/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ0NTY1LCJpYXQiOjE3MDgwNDA5NjUsImp0aSI6ImUwNjRmOTU3YjNmYzRkYmNiNzcwODNiMzY2OTJhMDQ2IiwidXNlcl9pZCI6NX0.Ag-z-dUpOheOV7A4_QV_I0fS_OlPWt-R4Zgeg4QrNmQ
+
+###
+# Update an Event (PUT or PATCH request):
+PUT  http://localhost:8000/api/events/7/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ0NTY1LCJpYXQiOjE3MDgwNDA5NjUsImp0aSI6ImUwNjRmOTU3YjNmYzRkYmNiNzcwODNiMzY2OTJhMDQ2IiwidXNlcl9pZCI6NX0.Ag-z-dUpOheOV7A4_QV_I0fS_OlPWt-R4Zgeg4QrNmQ
+
+{
+  "name": "Limited Event",
+  "description": "Updated Description",
+  "start_date": "2024-02-15T20:46:11Z",
+  "end_date": "2024-02-17T20:46:16Z",
+  "max_attendees": 1
+}
+
+###
+# Delete an Event (DELETE request):
+DELETE  http://localhost:8000/api/events/6/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ0NTY1LCJpYXQiOjE3MDgwNDA5NjUsImp0aSI6ImUwNjRmOTU3YjNmYzRkYmNiNzcwODNiMzY2OTJhMDQ2IiwidXNlcl9pZCI6NX0.Ag-z-dUpOheOV7A4_QV_I0fS_OlPWt-R4Zgeg4QrNmQ
+
+###
+# Register to an Event (POST request):
+POST  http://localhost:8000/api/events/7/register/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ2MzU1LCJpYXQiOjE3MDgwNDI3NTUsImp0aSI6IjBjMGU3NTA5ZmM0NTQ3NjViNDQ5MWY2ZGNhYzVhOTVjIiwidXNlcl9pZCI6Nn0.OldtfbO8OEthS4ABVE6y5G0zFv6Z5LNE54LVUpWvHI8
+
+
+###
+# Unregister to an Event (POST request):
+POST  http://localhost:8000/api/events/7/unregister/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDQ2MzU1LCJpYXQiOjE3MDgwNDI3NTUsImp0aSI6IjBjMGU3NTA5ZmM0NTQ3NjViNDQ5MWY2ZGNhYzVhOTVjIiwidXNlcl9pZCI6Nn0.OldtfbO8OEthS4ABVE6y5G0zFv6Z5LNE54LVUpWvHI8
