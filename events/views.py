@@ -1,7 +1,9 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from events.filters import EventFilter
 from events.models import Event, Registration
 from events.serializers import EventSerializer, UserSerializer
 
@@ -28,9 +30,9 @@ class UserRegister(APIView):
 
 # GET /api/events/create/
 class EventCreate(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -38,8 +40,8 @@ class EventCreate(generics.CreateAPIView):
 
 # GET /api/events/owned/ - List Events Created by the Logged-in User
 class OwnedEventListView(generics.ListAPIView):
-    serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventSerializer
 
     def get_queryset(self):
         """
@@ -51,16 +53,18 @@ class OwnedEventListView(generics.ListAPIView):
 
 # GET /api/events/ - List All Events
 class EventListView(generics.ListAPIView):
+    permission_classes = [permissions.AllowAny]  # Assuming events can be listed by any user
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny]  # Assuming events can be listed by any user
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = EventFilter
 
 
 # PUT /api/events/<id>/ - Edit an Event (Restricted to the Event's Owner)
 class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
 
 # POST /api/events/<id>/register/ - Register for an Event
