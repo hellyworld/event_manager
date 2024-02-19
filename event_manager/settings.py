@@ -36,11 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 3rd party APPS
+    # External Packages
     'rest_framework',
     'django_filters',
 
-    # My APPS
+    # Internal Packages
     'events',
 ]
 
