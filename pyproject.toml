@@ -1,22 +1,20 @@
 # black config
 [tool.black]
-line-length = 82
-target-version = ['py311', 'py312']
+line-length = 88
+target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
-(
-?pycache$
-|\.pyi?
-|.git
-|.mypy_cache
-|.pytest_cache
-|.tox
-|.venv
-|_build
-|buck-out
-|build
-|dist
-)
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
 '''
 
 # isort config
