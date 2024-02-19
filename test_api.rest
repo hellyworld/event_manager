@@ -1,32 +1,33 @@
 @base_url = http://localhost:8000/api
-@access_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MDc2NDY5LCJpYXQiOjE3MDgwNzI4NjksImp0aSI6ImM0N2RkZTNlNDRmYzQ5ZWFhYTQ4NDk1YWRlYzNhY2NlIiwidXNlcl9pZCI6N30.Jn14fGhddDpaDCedjXkP9__ouFyYjCMQWarhc5A46uY
+@refresh_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwODQ2NjE2MywiaWF0IjoxNzA4Mzc5NzYzLCJqdGkiOiJjMjg3YTZmZjE5MzY0MjE2OTYxOWY0ZmU1Y2MzZWUyZiIsInVzZXJfaWQiOjd9.vUhNuVhmfIDMaMzJPKrSI2zESrjepbyuM8-gJyCunns
+@access_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MzgzMTQ0LCJpYXQiOjE3MDgzNzk1NDQsImp0aSI6IjkyMjc3NmU3NjE5MTQ4NDFiZWMwYzEzNDY3MTZiMmY5IiwidXNlcl9pZCI6N30.OVhdVSHKoEda3X6_w4w5L2bbrep0WK5XZCtZurHsjVI
 
 # User Endpoints
 POST {{base_url}}/users/register/
 Content-Type: application/json
 
-{"username": "nata", "password":  "testpass", "email": "user@example.com"}
+{"username": "nana", "password":  "testpass", "email": "user@example.com"}
 
 ###
 
 POST {{base_url}}/users/login/
 Content-Type: application/json
 
-{"username": "nata", "password":  "testpass"}
+{"username": "nana", "password":  "testpass"}
 
 ###
 
 POST {{base_url}}/users/token/refresh/
 Content-Type: application/json
 
-{"username": "nata", "password":  "testpass"}
+{"refresh": "{{refresh_token}}"}
 
 ###
 
 POST {{base_url}}/users/token/verify/
 Content-Type: application/json
 
-{"username": "testuser3", "password":  "testpass"}
+{"token":  "{{access_token}}"}
 
 ###
 
