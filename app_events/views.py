@@ -7,24 +7,13 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from events.filters import EventFilter
-from events.models import Event, Registration
-from events.serializers import (
+from app_events.filters import EventFilter
+from app_events.models import Event, Registration
+from app_events.serializers import (
     EventSerializer,
     RegistrationSerializer,
     UserSerializer,
 )
-
-
-class IsOwnerOrReadOnly(permissions.BasePermission):
-    """
-    Custom permission to only allow owners of an event to edit it.
-    """
-
-    def has_object_permission(self, request: Request, view: APIView, obj: Any) -> bool:
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return obj.owner == request.user
 
 
 @extend_schema(
@@ -65,16 +54,12 @@ class EventCreate(generics.CreateAPIView):
 )
 class OwnedEventListView(generics.ListAPIView):
     """
-    API View to list all the events owned by the authenticated user
+    API View to list all the app_events owned by the authenticated user
     """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = EventSerializer
 
     def get_queryset(self) -> list[Event]:
-        """
-        This view should return a list of all events
-        for the currently authenticated user.
-        """
         if getattr(self, 'swagger_fake_view', False):
             return Event.objects.none()
         return Event.objects.filter(owner=self.request.user)
@@ -85,7 +70,7 @@ class OwnedEventListView(generics.ListAPIView):
 )
 class EventListView(generics.ListAPIView):
     """
-    API View to list all events
+    API View to list all app_events
     """
     permission_classes = [permissions.AllowAny]
     queryset = Event.objects.all()
@@ -104,9 +89,12 @@ class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     API view for retrieving, updating, and deleting an event
     """
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
-    queryset = Event.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = EventSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Event.objects.filter(owner=user)
 
 
 @extend_schema_view(

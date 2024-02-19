@@ -2,14 +2,15 @@ from django.contrib.auth.models import User
 from drf_spectacular.utils import extend_schema, extend_schema_field
 from rest_framework import serializers
 
-from events.models import Event, Registration
+from app_events.models import Event, Registration
 
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'email']  # TODO we can use email for users login
+        # TODO we can use email for users login
+        fields = ['username', 'password', 'email']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

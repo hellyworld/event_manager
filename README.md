@@ -15,7 +15,7 @@ attend events. This project adheres to clean coding practices, using modern Pyth
 
 ## Prerequisites
 
-- Python 3.8 or newer
+- Python 3.12
 - Pip and Virtualenv
 - Git (for version control)
 
@@ -25,7 +25,7 @@ Clone the project repository:
 
 ```bash
 git clone <repository-url>
-cd event_manager
+cd core
 ```
 
 Create a virtual environment and activate it:
@@ -79,17 +79,30 @@ python manage.py runserver
 
 The API will be available at [http://localhost:8000](http://localhost:8000).
 
-## Usage
+### Testing API Endpoints
 
-This section should include examples of how to use the API, such as making requests to create an account, log in, and create an event. (This will be filled in with specific examples of API requests and responses.)
+#### DRF Spectacular Auto-generated Docs
+
+To explore and test endpoints, navigate to `/schema/docs` in your browser with the development server running.
+
+#### Using Provided `.rest` Files
+
+The project includes `.rest` files for testing API endpoints directly within Visual Studio Code using the REST Client extension. This approach allows you to easily send HTTP requests and view responses without leaving your editor.
+
+**Prerequisites:**
+- Ensure you have Visual Studio Code installed.
+- Install the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code.
+
+**To Use `.rest` Files for Testing:**
+- Open the provided `.rest` file (e.g., `test_api.rest`) in Visual Studio Code.
+- You'll see "Send Request" links above each HTTP request. Click on these links to execute the requests and view responses directly within VS Code.
+
+This method provides a convenient way to interact with the API, making it easy to test different endpoints as you develop and debug your application.
+
 
 ## Running the Tests
 
-Explain how to run the automated tests for this system. (Instructions to be completed.)
-
-## Deployment
-
-Provide basic guidelines on deploying the project to a live system. (To be completed based on the deployment method chosen.)
+Explain how to run the automated tests for this system. _(Instructions to be completed.)_
 
 ## Built With
 
@@ -97,15 +110,27 @@ Provide basic guidelines on deploying the project to a live system. (To be compl
 * [Django REST Framework](https://www.django-rest-framework.org/) - Toolkit for building Web APIs
 * [DRF Spectacular](https://drf-spectacular.readthedocs.io/en/latest/) - Schema generation for Django REST Framework
 
-## Contributing
+## Future Enhancements
 
-We welcome contributions to the Event Manager API! For more information on how to contribute, please refer to our [contribution guidelines](CONTRIBUTING.md).
+### Admin Dashboard
+A graphical interface for admins to manage events, users, and view system statistics.
 
-## License
+### Enhanced Logging System
+A flexible logging system to capture and store logs using file systems, databases, or services 
+like Sentry for easier monitoring and troubleshooting.
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+### Refresh Token Authentication
+Implement refresh tokens for longer session management, reducing the need for frequent logins 
+by securely refreshing access tokens.
 
-## Acknowledgments
+### Event Recommendations
+A feature suggesting events to users based on their interests and past activities, 
+leveraging user data and preferences.
 
-- Hat tip to anyone whose code was used as inspiration.
-- Additional acknowledgments and credits. (To be filled in.)
+### Push Notifications
+Notifications for upcoming events, updates, and personalized alerts to keep users engaged, 
+using technologies like web sockets or Firebase Cloud Messaging.
+
+### User Feedback and Ratings
+Enable users to rate events and provide feedback, helping 
+organizers improve event quality and engagement.

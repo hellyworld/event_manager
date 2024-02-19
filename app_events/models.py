@@ -4,9 +4,9 @@ from django.db import models
 
 class Event(models.Model):
     owner = models.ForeignKey(User, related_name='owned_events',
-                              on_delete=models.CASCADE)  # to keep the event (independent) I can use SET_NULL
+                              on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     max_attendees = models.PositiveIntegerField(default=10, blank=True)
@@ -21,7 +21,7 @@ class Registration(models.Model):
     registration_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = [('event', 'user')]  # Prevents duplicate registrations
+        unique_together = [('event', 'user')]
 
     def __str__(self):
         return f'{self.user.username} registered for {self.event.name}'

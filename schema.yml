@@ -4,14 +4,14 @@ info:
   version: 1.0.0
   description: The task consists of creating a REST API using Django Rest Framework
     to create an Event Manager app. It should allow users to create a personal account,
-    log in, and create, edit, fetch, and register to attend events. Each event should
+    log in, and create, edit, fetch, and register to attend app_events. Each event should
     have at least a name, a description, a start date, an end date, and a list of
     attendees.
 paths:
   /api/events/:
     get:
       operationId: events_list
-      description: API View to list all events
+      description: API View to list all app_events
       parameters:
       - in: query
         name: end_date_before
@@ -42,7 +42,7 @@ paths:
           type: boolean
         description: Upcoming Events
       tags:
-      - events
+      - app_events
       security:
       - jwtAuth: []
       - {}
@@ -66,7 +66,7 @@ paths:
           type: integer
         required: true
       tags:
-      - events
+      - app_events
       security:
       - jwtAuth: []
       responses:
@@ -86,7 +86,7 @@ paths:
           type: integer
         required: true
       tags:
-      - events
+      - app_events
       requestBody:
         content:
           application/json:
@@ -118,7 +118,7 @@ paths:
           type: integer
         required: true
       tags:
-      - events
+      - app_events
       requestBody:
         content:
           application/json:
@@ -149,7 +149,7 @@ paths:
           type: integer
         required: true
       tags:
-      - events
+      - app_events
       security:
       - jwtAuth: []
       responses:
@@ -166,7 +166,7 @@ paths:
           type: integer
         required: true
       tags:
-      - events
+      - app_events
       requestBody:
         content:
           application/json:
@@ -199,7 +199,7 @@ paths:
           type: integer
         required: true
       tags:
-      - events
+      - app_events
       security:
       - jwtAuth: []
       responses:
@@ -214,7 +214,7 @@ paths:
       operationId: events_create_create
       description: API View for event creation
       tags:
-      - events
+      - app_events
       requestBody:
         content:
           application/json:
@@ -239,9 +239,9 @@ paths:
   /api/events/owned/:
     get:
       operationId: events_owned_list
-      description: API View to list all the events owned by the authenticated user
+      description: API View to list all the app_events owned by the authenticated user
       tags:
-      - events
+      - app_events
       security:
       - jwtAuth: []
       responses:

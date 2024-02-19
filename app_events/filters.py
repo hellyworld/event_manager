@@ -1,6 +1,7 @@
 import django_filters
 from django.utils import timezone
-from .models import Event
+
+from app_events.models import Event
 
 
 class EventFilter(django_filters.FilterSet):
