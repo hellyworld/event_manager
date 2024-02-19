@@ -1,8 +1,8 @@
-_For original instruction check [INSTRUCTIONS.md](INSTRUCTIONS.md)_ 
+_For original instruction check [INSTRUCTIONS.md](INSTRUCTIONS.md)_
 # Event Manager API
 
-The Event Manager API is a Django REST Framework project designed to facilitate the creation, management, and 
-registration of events. It allows users to create personal accounts, log in, create and edit events, and register to 
+The Event Manager API is a Django REST Framework project designed to facilitate the creation, management, and
+registration of events. It allows users to create personal accounts, log in, create and edit events, and register to
 attend events. This project adheres to clean coding practices, using modern Python development tools and methodologies.
 
 ## Features
@@ -116,21 +116,21 @@ Explain how to run the automated tests for this system. _(Instructions to be com
 A graphical interface for admins to manage events, users, and view system statistics.
 
 ### Enhanced Logging System
-A flexible logging system to capture and store logs using file systems, databases, or services 
+A flexible logging system to capture and store logs using file systems, databases, or services
 like Sentry for easier monitoring and troubleshooting.
 
 ### Refresh Token Authentication
-Implement refresh tokens for longer session management, reducing the need for frequent logins 
+Implement refresh tokens for longer session management, reducing the need for frequent logins
 by securely refreshing access tokens.
 
 ### Event Recommendations
-A feature suggesting events to users based on their interests and past activities, 
+A feature suggesting events to users based on their interests and past activities,
 leveraging user data and preferences.
 
 ### Push Notifications
-Notifications for upcoming events, updates, and personalized alerts to keep users engaged, 
+Notifications for upcoming events, updates, and personalized alerts to keep users engaged,
 using technologies like web sockets or Firebase Cloud Messaging.
 
 ### User Feedback and Ratings
-Enable users to rate events and provide feedback, helping 
+Enable users to rate events and provide feedback, helping
 organizers improve event quality and engagement.

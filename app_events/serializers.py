@@ -6,7 +6,6 @@ from app_events.models import Event, Registration
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         # TODO we can use email for users login
