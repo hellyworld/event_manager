@@ -20,10 +20,10 @@ urlpatterns = [
     path('users/login/', TokenObtainPairView.as_view(), name='token-obtain-pair'),  # for access and refresh
     path('users/token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
     path('users/token/verify/', TokenVerifyView.as_view(), name='token-verify'),
-    path('app_events/', EventListView.as_view(), name='event-list'),
-    path('app_events/create/', EventCreate.as_view(), name='event-create'),
-    path('app_events/owned/', OwnedEventListView.as_view(), name='owned-app_events'),
-    path('app_events/<int:pk>/', EventDetailAPIView.as_view(), name='event-detail'),
-    path('app_events/<int:pk>/register/', RegisterEventView.as_view(), name='event-register'),
-    path('app_events/<int:pk>/unregister/', UnregisterEventView.as_view(), name='event-unregister'),
+    path('events/', EventListView.as_view(), name='event-list'),
+    path('events/create/', EventCreate.as_view(), name='event-create'),
+    path('events/owned/', OwnedEventListView.as_view(), name='owned-app_events'),
+    path('events/<int:pk>/', EventDetailAPIView.as_view(), name='event-detail'),
+    path('events/<int:pk>/register/', RegisterEventView.as_view(), name='event-register'),
+    path('events/<int:pk>/unregister/', UnregisterEventView.as_view(), name='event-unregister'),
 ]
