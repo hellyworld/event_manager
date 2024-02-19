@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # External Packages
     'rest_framework',
     'django_filters',
+    'drf_spectacular',
 
     # Internal Packages
     'events',
@@ -130,6 +131,16 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Event Manager',
+    'DESCRIPTION': 'The task consists of creating a REST API using Django Rest Framework to create an Event Manager '
+                   'app. It should allow users to create a personal account, log in, and create, edit, fetch, and '
+                   'register to attend events. Each event should have at least a name, a description, a start date, '
+                   'an end date, and a list of attendees.',
+    'VERSION': '1.0.0',
 }
 
 SIMPLE_JWT = {

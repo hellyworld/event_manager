@@ -1,7 +1,9 @@
-_For original instruction check [INSTRUCTIONS.md](INSTRUCTIONS.md)_
+_For original instruction check [INSTRUCTIONS.md](INSTRUCTIONS.md)_ 
 # Event Manager API
 
-The Event Manager API is a Django REST Framework project designed to facilitate the creation, management, and registration of events. It allows users to create personal accounts, log in, create and edit events, and register to attend events. This project adheres to clean coding practices, using modern Python development tools and methodologies.
+The Event Manager API is a Django REST Framework project designed to facilitate the creation, management, and 
+registration of events. It allows users to create personal accounts, log in, create and edit events, and register to 
+attend events. This project adheres to clean coding practices, using modern Python development tools and methodologies.
 
 ## Features
 
@@ -88,6 +90,12 @@ Explain how to run the automated tests for this system. (Instructions to be comp
 ## Deployment
 
 Provide basic guidelines on deploying the project to a live system. (To be completed based on the deployment method chosen.)
+
+## Built With
+
+* [Django](https://www.djangoproject.com/) - The web framework used
+* [Django REST Framework](https://www.django-rest-framework.org/) - Toolkit for building Web APIs
+* [DRF Spectacular](https://drf-spectacular.readthedocs.io/en/latest/) - Schema generation for Django REST Framework
 
 ## Contributing
 
