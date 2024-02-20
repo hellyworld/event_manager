@@ -1,4 +1,5 @@
 _For original instruction check [INSTRUCTIONS.md](INSTRUCTIONS.md)_
+
 # Event Manager API
 
 The Event Manager API is a Django REST Framework project designed to facilitate the creation, management, and
@@ -79,7 +80,7 @@ python manage.py runserver
 
 The API will be available at [http://localhost:8000](http://localhost:8000).
 
-### Testing API Endpoints
+### API Documentation
 
 #### DRF Spectacular Auto-generated Docs
 
@@ -87,22 +88,47 @@ To explore and test endpoints, navigate to `/schema/docs` in your browser with t
 
 #### Using Provided `.rest` Files
 
-The project includes `.rest` files for testing API endpoints directly within Visual Studio Code using the REST Client extension. This approach allows you to easily send HTTP requests and view responses without leaving your editor.
+The project includes `.rest` files for testing API endpoints directly within Visual Studio Code using the REST Client
+extension. This approach allows you to easily send HTTP requests and view responses without leaving your editor.
 
 **Prerequisites:**
+
 - Ensure you have Visual Studio Code installed.
-- Install the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual Studio Code.
+- Install the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) in Visual
+  Studio Code.
 
 **To Use `.rest` Files for Testing:**
+
 - Open the provided `.rest` file (e.g., `test_api.rest`) in Visual Studio Code.
-- You'll see "Send Request" links above each HTTP request. Click on these links to execute the requests and view responses directly within VS Code.
+- You'll see "Send Request" links above each HTTP request. Click on these links to execute the requests and view
+  responses directly within VS Code.
 
-This method provides a convenient way to interact with the API, making it easy to test different endpoints as you develop and debug your application.
-
+This method provides a convenient way to interact with the API, making it easy to test different endpoints as you
+develop and debug your application.
 
 ## Running the Tests
 
-Explain how to run the automated tests for this system. _(Instructions to be completed.)_
+Use pytest to execute automated tests and pytest-cov for coverage reports. Here's how to get started:
+
+Running all tests
+
+```bash
+pytest
+```
+
+To generate a coverage report:
+
+```bash
+pytest --cov
+```
+
+Generate an HTML coverage report with:
+
+```bash
+coverage html
+```
+
+The report is saved in htmlcov/index.html. Open it in a browser to view detailed coverage information.
 
 ## Built With
 
@@ -113,24 +139,30 @@ Explain how to run the automated tests for this system. _(Instructions to be com
 ## Future Enhancements
 
 ### Admin Dashboard
+
 A graphical interface for admins to manage events, users, and view system statistics.
 
 ### Enhanced Logging System
+
 A flexible logging system to capture and store logs using file systems, databases, or services
 like Sentry for easier monitoring and troubleshooting.
 
 ### Refresh Token Authentication
+
 Implement refresh tokens for longer session management, reducing the need for frequent logins
 by securely refreshing access tokens.
 
 ### Event Recommendations
+
 A feature suggesting events to users based on their interests and past activities,
 leveraging user data and preferences.
 
 ### Push Notifications
+
 Notifications for upcoming events, updates, and personalized alerts to keep users engaged,
 using technologies like web sockets or Firebase Cloud Messaging.
 
 ### User Feedback and Ratings
+
 Enable users to rate events and provide feedback, helping
 organizers improve event quality and engagement.

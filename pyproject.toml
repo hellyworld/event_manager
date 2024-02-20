@@ -28,5 +28,5 @@ ensure_newline_before_comments = true
 
 # pytest config
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "event_manager.settings"
+DJANGO_SETTINGS_MODULE = "core.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
