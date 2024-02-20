@@ -1,5 +1,8 @@
+from datetime import timedelta
+
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Event(models.Model):
@@ -8,8 +11,8 @@ class Event(models.Model):
     )
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(default=timezone.now() + timedelta(days=2))
     max_attendees = models.PositiveIntegerField(default=10, blank=True)
 
     def __str__(self):
