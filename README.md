@@ -140,29 +140,40 @@ The report is saved in htmlcov/index.html. Open it in a browser to view detailed
 
 ### Admin Dashboard
 
-A graphical interface for admins to manage events, users, and view system statistics.
+A built-in Django admin dashboard is planned for enhanced management capabilities, allowing admins to easily manage
+events, users, and view system statistics directly within a graphical interface.
 
 ### Enhanced Logging System
 
-A flexible logging system to capture and store logs using file systems, databases, or services
-like Sentry for easier monitoring and troubleshooting.
+A flexible logging system to capture and store logs using file systems, databases, or services like Sentry for easier
+monitoring and troubleshooting.
 
 ### Refresh Token Authentication
 
-Implement refresh tokens for longer session management, reducing the need for frequent logins
-by securely refreshing access tokens.
+Implement refresh tokens for longer session management, reducing the need for frequent logins by securely refreshing
+access tokens.
 
-### Event Recommendations
+### CI/CD Pipelines
 
-A feature suggesting events to users based on their interests and past activities,
-leveraging user data and preferences.
+Automate testing and deployment processes to ensure consistent quality and streamline updates across the development
+lifecycle.
 
-### Push Notifications
+### Dockerization
 
-Notifications for upcoming events, updates, and personalized alerts to keep users engaged,
-using technologies like web sockets or Firebase Cloud Messaging.
+Plan to containerize the application using Docker to simplify deployment and ensure consistency across different
+environments. This approach will facilitate easier scaling, development, and testing processes by encapsulating the
+application and its dependencies within Docker containers.
 
-### User Feedback and Ratings
+### Automated Testing Suite
 
-Enable users to rate events and provide feedback, helping
-organizers improve event quality and engagement.
+Expand the testing suite to include comprehensive unit, integration, and end-to-end tests for thorough coverage.
+
+### API Versioning
+
+Implement versioning for the API to ensure backward compatibility and facilitate smooth transitions for API users as the
+system evolves.
+
+### Accessibility Enhancements
+
+Enhance application accessibility to ensure inclusivity, adhering to best practices and conducting thorough
+accessibility testing.
