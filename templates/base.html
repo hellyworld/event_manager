@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock title %}</title>
+    <!-- Example of linking to an external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Place additional CSS files or inline styles here -->
+</head>
+<body>
+    <header>
+        <!-- Navigation bar, logo, or header content goes here -->
+        <nav>
+            <ul>
+                <li><a href="{% url 'users-register' %}">Register</a></li>
+                <!-- Add more navigation items as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page-specific content will be inserted here -->
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <!-- Footer content goes here -->
+        <p>© 2024 My Site. All rights reserved.</p>
+    </footer>
+
+    <!-- Example of linking to an external JavaScript file -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- Place additional JavaScript files or inline scripts here -->
+</body>
+</html>

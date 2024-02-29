@@ -1,5 +1,7 @@
 from typing import Any, Type
 
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import generics, permissions, status
@@ -22,13 +24,29 @@ class UserRegister(APIView):
     API View for user registration
     """
 
+    def get(self, request, *args, **kwargs):
+        # Display the registration form
+        form = UserCreationForm()  # Swap with your own form if necessary
+        return render(request, "registration/register.html", {"form": form})
+
     def post(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            return_data = UserSerializer(user).data
-            return Response(return_data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if request.content_type == "application/json":
+            serializer = UserSerializer(data=request.data)
+            if serializer.is_valid():
+                user = serializer.save()
+                return_data = UserSerializer(user).data
+                return Response(return_data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            # Handle form data
+            form = UserCreationForm(request.POST)  # Or your custom user form
+            if form.is_valid():
+                user = form.save()
+                # Optionally log the user in
+                # login(request, user)
+                return redirect("/")
+            return render(request, "registration/register.html", {"form": form})
 
 
 @extend_schema_view(post=extend_schema(responses={200: EventSerializer}))
