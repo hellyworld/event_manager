@@ -24,7 +24,7 @@ urlpatterns = [
     path("users/token/verify/", TokenVerifyView.as_view(), name="token-verify"),
     path("events/", EventListView.as_view(), name="event-list"),
     path("events/create/", EventCreate.as_view(), name="event-create"),
-    path("events/owned/", OwnedEventListView.as_view(), name="owned-app_events"),
+    path("events/owned/", OwnedEventListView.as_view(), name="owned-events"),
     path("events/<int:pk>/", EventDetailAPIView.as_view(), name="event-detail"),
     path(
         "events/<int:pk>/register/", RegisterEventView.as_view(), name="event-register"
