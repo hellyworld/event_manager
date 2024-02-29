@@ -140,9 +140,8 @@ class UnregisterEventView(APIView):
 
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        event_id = kwargs.get("pk")
-        event = generics.get_object_or_404(Event, id=event_id)
+    def delete(self, request: Request, pk: str) -> Response:
+        event = generics.get_object_or_404(Event, id=pk)
         user = request.user
 
         try:
@@ -150,7 +149,7 @@ class UnregisterEventView(APIView):
             registration.delete()
             return Response(
                 {"message": "Unregistered successfully."},
-                status=status.HTTP_202_ACCEPTED,
+                status=status.HTTP_204_NO_CONTENT,
             )
         except Registration.DoesNotExist:
             return Response(
