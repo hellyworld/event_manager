@@ -1,6 +1,6 @@
 @base_url = http://localhost:8000/api
 @refresh_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwODQ2NjE2MywiaWF0IjoxNzA4Mzc5NzYzLCJqdGkiOiJjMjg3YTZmZjE5MzY0MjE2OTYxOWY0ZmU1Y2MzZWUyZiIsInVzZXJfaWQiOjd9.vUhNuVhmfIDMaMzJPKrSI2zESrjepbyuM8-gJyCunns
-@access_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA4MzgzMTQ0LCJpYXQiOjE3MDgzNzk1NDQsImp0aSI6IjkyMjc3NmU3NjE5MTQ4NDFiZWMwYzEzNDY3MTZiMmY5IiwidXNlcl9pZCI6N30.OVhdVSHKoEda3X6_w4w5L2bbrep0WK5XZCtZurHsjVI
+@access_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA5MTk2MTczLCJpYXQiOjE3MDkxOTI1NzMsImp0aSI6IjM1ZDg3Yzg4MGM1ZTQ1NmRhNmMwNmI4NGEzZTU5YzI2IiwidXNlcl9pZCI6N30.OfbI_ienf-nXC4rtD2rChwgnNTP7TUy8T-Z-9NswhGI
 
 # User Endpoints
 POST {{base_url}}/users/register/
@@ -13,7 +13,7 @@ Content-Type: application/json
 POST {{base_url}}/users/login/
 Content-Type: application/json
 
-{"username": "nana", "password":  "testpass"}
+{"username": "name", "password":  "namepass123"}
 
 ###
 
@@ -103,7 +103,7 @@ Authorization: Bearer {{access_token}}
 ###
 
 # Register to an Event (POST request) - max out
-POST {{base_url}}/events/7/register/
+POST {{base_url}}/events/5/register/
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
@@ -117,13 +117,13 @@ Authorization: Bearer {{access_token}}
 ###
 
 # Unregister from an Event (POST request) - not registered
-POST {{base_url}}/events/7/unregister/
+DELETE {{base_url}}/events/5/unregister/
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 ###
 
 # Unregister from an Event (POST request) - 200
-POST {{base_url}}/events/8/unregister/
+DELETE {{base_url}}/events/8/unregister/
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
