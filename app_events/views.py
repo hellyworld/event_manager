@@ -147,7 +147,7 @@ class RegisterEventView(APIView):
 
 
 @extend_schema(
-    methods=["POST"],
+    methods=["DELETE"],
     request=None,
     responses={200: {"message": "Unregistered successfully."}},
 )

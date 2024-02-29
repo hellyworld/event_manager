@@ -4,9 +4,9 @@ info:
   version: 1.0.0
   description: The task consists of creating a REST API using Django Rest Framework
     to create an Event Manager app. It should allow users to create a personal account,
-    log in, and create, edit, fetch, and register to attend app_events. Each event should
-    have at least a name, a description, a start date, an end date, and a list of
-    attendees.
+    log in, and create, edit, fetch, and register to attend app_events. Each event
+    should have at least a name, a description, a start date, an end date, and a list
+    of attendees.
 paths:
   /api/events/:
     get:
@@ -42,7 +42,7 @@ paths:
           type: boolean
         description: Upcoming Events
       tags:
-      - app_events
+      - events
       security:
       - jwtAuth: []
       - {}
@@ -66,7 +66,7 @@ paths:
           type: integer
         required: true
       tags:
-      - app_events
+      - events
       security:
       - jwtAuth: []
       responses:
@@ -86,7 +86,7 @@ paths:
           type: integer
         required: true
       tags:
-      - app_events
+      - events
       requestBody:
         content:
           application/json:
@@ -118,7 +118,7 @@ paths:
           type: integer
         required: true
       tags:
-      - app_events
+      - events
       requestBody:
         content:
           application/json:
@@ -149,7 +149,7 @@ paths:
           type: integer
         required: true
       tags:
-      - app_events
+      - events
       security:
       - jwtAuth: []
       responses:
@@ -166,7 +166,7 @@ paths:
           type: integer
         required: true
       tags:
-      - app_events
+      - events
       requestBody:
         content:
           application/json:
@@ -189,8 +189,8 @@ paths:
                 message: Registration successful.
           description: ''
   /api/events/{id}/unregister/:
-    post:
-      operationId: events_unregister_create
+    delete:
+      operationId: events_unregister_destroy
       description: API View to unregister from an event
       parameters:
       - in: path
@@ -199,22 +199,18 @@ paths:
           type: integer
         required: true
       tags:
-      - app_events
+      - events
       security:
       - jwtAuth: []
       responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                message: Unregistered successfully.
-          description: ''
+        '204':
+          description: No response body
   /api/events/create/:
     post:
       operationId: events_create_create
       description: API View for event creation
       tags:
-      - app_events
+      - events
       requestBody:
         content:
           application/json:
@@ -239,9 +235,10 @@ paths:
   /api/events/owned/:
     get:
       operationId: events_owned_list
-      description: API View to list all the app_events owned by the authenticated user
+      description: API View to list all the app_events owned by the authenticated
+        user
       tags:
-      - app_events
+      - events
       security:
       - jwtAuth: []
       responses:
@@ -426,6 +423,21 @@ paths:
                 $ref: '#/components/schemas/TokenObtainPair'
           description: ''
   /api/users/register/:
+    get:
+      operationId: users_register_retrieve
+      description: API View for user registration
+      tags:
+      - users
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
     post:
       operationId: users_register_create
       description: API View for user registration
@@ -523,6 +535,7 @@ components:
           maxLength: 255
         description:
           type: string
+          nullable: true
         start_date:
           type: string
           format: date-time
@@ -539,12 +552,9 @@ components:
           readOnly: true
       required:
       - attendees_count
-      - description
-      - end_date
       - id
       - name
       - owner
-      - start_date
     PatchedEvent:
       type: object
       properties:
@@ -559,6 +569,7 @@ components:
           maxLength: 255
         description:
           type: string
+          nullable: true
         start_date:
           type: string
           format: date-time
