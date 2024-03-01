@@ -3,8 +3,8 @@ from typing import Any, Type
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema, extend_schema_view
-from rest_framework import generics, permissions, status
+from drf_spectacular.utils import extend_schema, extend_schema_view, inline_serializer
+from rest_framework import generics, permissions, status, serializers
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -147,9 +147,17 @@ class RegisterEventView(APIView):
 
 
 @extend_schema(
-    methods=["DELETE"],
-    request=None,
-    responses={200: {"message": "Unregistered successfully."}},
+    request=None,  # No request body expected
+    responses={
+        status.HTTP_202_ACCEPTED: inline_serializer(
+            name="UnregisterEventSuccessResponse",
+            fields={"message": serializers.CharField()},
+        ),
+        status.HTTP_400_BAD_REQUEST: inline_serializer(
+            name="UnregisterEventErrorResponse",
+            fields={"message": serializers.CharField()},
+        ),
+    },
 )
 class UnregisterEventView(APIView):
     """
@@ -167,7 +175,7 @@ class UnregisterEventView(APIView):
             registration.delete()
             return Response(
                 {"message": "Unregistered successfully."},
-                status=status.HTTP_204_NO_CONTENT,
+                status=status.HTTP_202_ACCEPTED,
             )
         except Registration.DoesNotExist:
             return Response(
